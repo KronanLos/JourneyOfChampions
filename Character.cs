@@ -24,7 +24,7 @@ namespace JourneyOfChampions
             switch (name)
             {
                 case "Jorge":
-                    SetJorgeStats();
+                    SetDiegoStats();
                     break;
                 default:
                     break;
@@ -32,7 +32,7 @@ namespace JourneyOfChampions
 
         }
 
-        public void DisplayStatsJorge()
+        public void DisplayStatsDiego()
         {
             Console.WriteLine($"Character: {name}");
             Console.WriteLine($"Origin: Brazil");
@@ -48,17 +48,18 @@ namespace JourneyOfChampions
         private Characters name;
         enum Characters
         {
-            Jorge,
+            Diego,
             Donald,
             Wanaporn,
             Asa,
             Vladimir,
+            Haakon
 
         }
 
-        private void SetJorgeStats()
+        private void SetDiegoStats()
         {
-            name = Characters.Jorge;
+            name = Characters.Diego;
             origin = "Brazil";
             health = 150;
             stamina = 100;

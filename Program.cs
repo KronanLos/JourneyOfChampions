@@ -1,71 +1,38 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
+using NetCoreAudio;
+
 
 namespace JourneyOfChampions
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-            Console.WriteLine("Hello, World!");
-            Sounds();
-            stopWatch.Stop();
+            Console.Title = "Journey of Champions";
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.BackgroundColor = ConsoleColor.Magenta;
+
+            var player = new Player();
+            await player.Play(@"sounds\QuirkyRunner.mp3");
+
+
+
+            Console.WriteLine("Your journey to be a champion starts now!");
+            Console.WriteLine("Get ready...");
+            Console.WriteLine("Your first decision is to choose which character you wanna use");
+            Console.WriteLine("You have the following options: Jorge, Donald, Wanaporn, Asa, Vladimir, Haakon");
+            Console.Write("Type the name of your character: ");
+            string characterName = Console.ReadLine();
+
+
+
+
+
+
+
         }
 
-
-
-        private static void Sounds()
-        {
-            Console.Beep(369, 200);
-            Console.Beep(369, 200);
-            Console.Beep(369, 200);
-            Console.Beep(293, 200);
-            Console.Beep(246, 200);
-            Console.Beep(329, 200);
-            Console.Beep(329, 200);
-            Console.Beep(329, 200);
-            Console.Beep(415, 200);
-            Console.Beep(415, 200);
-            Console.Beep(440, 200);
-            Console.Beep(493, 200);
-            Console.Beep(440, 200);
-            Console.Beep(440, 200);
-            Console.Beep(440, 200);
-            Console.Beep(329, 200);
-            Console.Beep(293, 200);
-            Console.Beep(369, 200);
-            Console.Beep(369, 200);
-            Console.Beep(369, 200);
-            Console.Beep(329, 200);
-            Console.Beep(329, 200);
-            Console.Beep(369, 200);
-            Console.Beep(329, 200);
-            Console.Beep(369, 200);
-            Console.Beep(369, 200);
-            Console.Beep(369, 200);
-            Console.Beep(293, 200);
-            Console.Beep(246, 200);
-            Console.Beep(329, 200);
-            Console.Beep(329, 200);
-            Console.Beep(329, 200);
-            Console.Beep(415, 200);
-            Console.Beep(415, 200);
-            Console.Beep(440, 200);
-            Console.Beep(493, 200);
-            Console.Beep(440, 200);
-            Console.Beep(440, 200);
-            Console.Beep(440, 200);
-            Console.Beep(329, 200);
-            Console.Beep(293, 200);
-            Console.Beep(369, 200);
-            Console.Beep(369, 200);
-            Console.Beep(369, 200);
-            Console.Beep(329, 200);
-            Console.Beep(329, 200);
-            Console.Beep(369, 200);
-            Console.Beep(329, 200);
-        }
         
 
     }
