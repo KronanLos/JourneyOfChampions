@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +15,27 @@ namespace JourneyOfChampions
         private int lowPunchesUsed;
         private int blocksUsed;
 
+        Random rnd = new Random();
+
         public Champion(string name) : base(name)
         {
-            
+
+            List<string> opponents = new List<string>
+            {
+                "Diego",
+                "Donald",
+                "Wanaporn",
+                "Asa",
+                "Vladimir",
+                "Haakon"
+            };
+            opponents.Remove(name);
+
+        }
+
+        public void NextOpponent()
+        {
+            // rnd.Next(opponents.Count);  
         }
 
         public void MakingMove(string move)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,19 +31,6 @@ namespace JourneyOfChampions
                     break;
             }
 
-        }
-
-        public void DisplayStatsDiego()
-        {
-            Console.WriteLine($"Character: {name}");
-            Console.WriteLine($"Origin: Brazil");
-            Console.WriteLine($"Health: {health}");
-            Console.WriteLine($"Stamina: {stamina}");
-            Console.WriteLine($"High Kick Power: {highKickPower}");
-            Console.WriteLine($"Low Kick Power: {lowKickPower}");
-            Console.WriteLine($"High Punch Power: {highPunchPower}");
-            Console.WriteLine($"Low Punch Power: {lowPunchPower}");
-            Console.WriteLine($"Block Power: {blockPower}");
         }
 
         private Characters name;
