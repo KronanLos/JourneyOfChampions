@@ -43,6 +43,9 @@ namespace JourneyOfChampions
 
             Console.WriteLine($"Diego's health after taking damage: {champion.Health}");
 
+            champion.Moves.MakingMove("High Kick");
+            Console.WriteLine(champion.Moves.HighKicksUsed);
+
 
 
 

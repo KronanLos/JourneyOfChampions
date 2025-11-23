@@ -10,6 +10,7 @@ namespace JourneyOfChampions
     abstract class Character : IMove
     {
         public List<string> Opponents { get; protected set; }
+        public MovesUsed Moves { get; protected set; }
 
         protected string origin = "Sweden";
         public int Health { get; protected set; }
