@@ -12,13 +12,13 @@ namespace JourneyOfChampions
         private string origin = "Sweden";
         private int health;
         private int stamina;
-        private int highKickPower;
-        private int lowKickPower;
-        private int highPunchPower;
-        private int lowPunchPower;
-        private int blockPower;
-
-        // private int speed;
+        private int highKickPower;  // high damage, high stamina cost
+        private int lowKickPower;   // medium damage, medium stamina cost
+        private int highPunchPower; // medium damage, medium stamina cost
+        private int lowPunchPower;  // low damage, low stamina cost
+        private int blockPower;     // reduces damage taken, low stamina gain
+        private int dodgeChance;    // chance to completely avoid an attack, medium stamina gain
+        private int recoveryRate;  // recovers stamina while doing nothing, high stamina gain, takes full damage
 
         public Character(string name) 
         {
