@@ -20,6 +20,11 @@ namespace JourneyOfChampions
         private int dodgeChance;    // chance to completely avoid an attack, medium stamina gain
         private int recoveryRate;  // recovers stamina while doing nothing, high stamina gain, takes full damage
 
+
+        // Character movements will affect stamina and health differently based on their power levels
+        // Moves: High Kick, Low Kick, High Punch, Low Punch, Block, Dodge, Recover
+
+
         public Character(string name) 
         {
             switch (name)
