@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace JourneyOfChampions
 {
@@ -12,10 +13,12 @@ namespace JourneyOfChampions
         public List<string> Opponents { get; protected set; } //HMMMMMM
         public MovesUsed Moves { get; protected set; }  //HMMMMM
 
-        protected string origin;
+
         public int Health { get; protected set; }
+        public bool IsAlive => Health > 0;
+        
         private int stamina;
-        private int highKickPower;  // high damage, high stamina cost
+        private int highKickPower;  // high damage, high stamina cost                          KAN ANVÄNDAS MED DAMAGE CALTULATORN
         private int lowKickPower;   // medium damage, medium stamina cost
         private int highPunchPower; // medium damage, medium stamina cost
         private int lowPunchPower;  // low damage, low stamina cost
@@ -27,21 +30,31 @@ namespace JourneyOfChampions
         // Moves: High Kick, Low Kick, High Punch, Low Punch, Block, Dodge, Recover
 
 
-        private IDamageCalculator calculator; //HMMMM
+
+
+      
 
        
        
         public string Origin => origin;
-        public bool IsAlive => Health > 0;
+        private string origin;
+
+    
+
 
        
-        public int BlockPower => blockPower;
+        public int BlockPower => blockPower;  //why
         public int DodgeChance => dodgeChance;
         public int Stamina => stamina;
 
 
-        public Character(string name) 
+        private readonly IDamageCalculator calculator; //vhatgpt
+       
+
+
+        public Character(string name, IDamageCalculator calculator) 
         {
+            this.calculator = calculator;
             Opponents = new List<string>();
             Moves = new MovesUsed();
 
@@ -79,13 +92,25 @@ namespace JourneyOfChampions
 
         }
 
+        public Character(string name) : this(name, new BasicDamageCalculator())
+        {
+            //om inget anges
+        }
+
         public virtual void SpecialMove(Character target)
         {
+
+            int damage = 0;
             switch (name)
             {
                 case Characters.Diego:
                     Console.WriteLine("Diego Uses brazilian spin kick");
                     target.LosingHealth(highKickPower * 2);
+
+                    damage = calculator.CalculateDamage(highKickPower * 2, stamina,
+                       target.BlockPower, target.DodgeChance); // att göra detta uppfyller nog kraven bättre i synnerhet till uppgiften
+
+
                     stamina -= 30;
                     break;
 
@@ -93,17 +118,27 @@ namespace JourneyOfChampions
                     Console.WriteLine("Atomic strike");
                     target.LosingHealth(highPunchPower * 2);
                     stamina -= 25;
+                    damage = calculator.CalculateDamage(highKickPower * 2, stamina,
+                  target.BlockPower, target.DodgeChance);
                     break;
 
                 case Characters.Wanaporn:
                     Console.WriteLine("Wanaporn uses Muay Thai Fury!");
                     target.LosingHealth(lowKickPower * 3);
+
+                    damage = calculator.CalculateDamage(highKickPower * 2, stamina,
+                  target.BlockPower, target.DodgeChance);
+
                     stamina -= 20;
                     break;
 
                 case Characters.Asa:
                     Console.WriteLine("Åsa uses FrostHeal");
                     target.LosingHealth(lowPunchPower * 2);
+
+                    damage = calculator.CalculateDamage(highKickPower * 2, stamina,
+                  target.BlockPower, target.DodgeChance);
+
                     Health += 10; // lite heal
                     stamina -= 10;
                     break;
@@ -111,17 +146,26 @@ namespace JourneyOfChampions
                 case Characters.Vladimir:
                     Console.WriteLine("Vladimir uses Bear Hug!");
                     target.LosingHealth(highPunchPower * 3);
+
+                    damage = calculator.CalculateDamage(highKickPower * 2, stamina,
+                  target.BlockPower, target.DodgeChance);
+
                     stamina -= 40;
                     break;
 
                 case Characters.Haakon:
                     Console.WriteLine("Haakon uses Fjord Smash!");
                     target.LosingHealth(highKickPower * 2 + lowKickPower);
+
+                    damage = calculator.CalculateDamage(highKickPower * 2, stamina,
+                  target.BlockPower, target.DodgeChance);
+
                     stamina -= 30;
                     break;
             }
 
             if (stamina < 0) stamina = 0;
+            if (stamina == 0) Console.Write("damn i cant make a move");
         }
 
         private Characters name;

@@ -29,5 +29,16 @@ namespace JourneyOfChampions
                 return damage;
             }
         }
+
+    class BossDamageCalculator : IDamageCalculator
+    {
+        public int CalculateDamage(int basePower, int attackerStamina, int defenderBlock, int defenderDodgeChance)
+        {
+            int damage = basePower + 30; 
+            damage -= defenderBlock / 10; 
+            if (damage < 0) damage = 0;
+            return damage;
+        }
+    }
 }
 
