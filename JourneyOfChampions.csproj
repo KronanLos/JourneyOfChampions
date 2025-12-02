@@ -8,9 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="sounds\QuietTension.mp3" />
+    <None Remove="sounds\TheJazzMan.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="NetCoreAudio" Version="2.0.0" />
+    <Content Include="sounds\QuietTension.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
 	  <Content Include="sounds\QuirkyRunner.mp3">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="sounds\TheJazzMan.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
   </ItemGroup>
 

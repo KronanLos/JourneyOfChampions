@@ -9,8 +9,7 @@ namespace JourneyOfChampions
 {
     internal class Champion : Character
     {
-        // Random rnd = new Random();
-
+        Random rnd = new Random();
 
         public Champion(string name) : this(name, new BasicDamageCalculator())
         {
@@ -31,9 +30,17 @@ namespace JourneyOfChampions
             Opponents.Remove(name);
 
         }
-        public override void NextOpponent()
+        public override string NextOpponent()
         {
-            // rnd.Next(opponents.Count);  
+            if (Opponents.Count != 0)
+            {
+                string enemy = Opponents[rnd.Next(Opponents.Count)];
+                Opponents.Remove(enemy);
+                return enemy;
+            }
+
+            return "No opponents left!";
+
         }
     }
 }

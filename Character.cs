@@ -8,12 +8,12 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace JourneyOfChampions
 {
-    abstract class Character : IMove
+    abstract class Character
     {
         public List<string> Opponents { get; protected set; } //HMMMMMM
         public MovesUsed Moves { get; protected set; }  //HMMMMM
 
-
+        public string Name { get; protected set; }
         public int Health { get; protected set; }
         public bool IsAlive => Health > 0;
         
@@ -28,42 +28,26 @@ namespace JourneyOfChampions
 
         // Character movements will affect stamina and health differently based on their power levels
         // Moves: High Kick, Low Kick, High Punch, Low Punch, Block, Dodge, Recover
-
-
-
-
-      
-
-       
        
         public string Origin => origin;
         private string origin;
-
-    
-
-
        
         public int BlockPower => blockPower;  //why
         public int DodgeChance => dodgeChance;
         public int Stamina => stamina;
 
-
         private readonly IDamageCalculator calculator; //vhatgpt
-       
-
 
         public Character(string name, IDamageCalculator calculator) 
         {
+            
+            Name = name;
             this.calculator = calculator;
-            Opponents = new List<string>();
-            Moves = new MovesUsed();
-
             switch (name)
             {
                 case "Diego":
                     SetDiegoStats();
                     break;
-                
 
                 case "Donald":
                     SetDonaldStats();
@@ -89,7 +73,6 @@ namespace JourneyOfChampions
                     throw new ArgumentException("Unknown character name", nameof(name));
 
             }
-
         }
 
         public Character(string name) : this(name, new BasicDamageCalculator())
@@ -108,7 +91,7 @@ namespace JourneyOfChampions
                     target.LosingHealth(highKickPower * 2);
 
                     damage = calculator.CalculateDamage(highKickPower * 2, stamina,
-                       target.BlockPower, target.DodgeChance); // att göra detta uppfyller nog kraven bättre i synnerhet till uppgiften
+                    target.BlockPower, target.DodgeChance); // att göra detta uppfyller nog kraven bättre i synnerhet till uppgiften
 
 
                     stamina -= 30;
@@ -119,7 +102,7 @@ namespace JourneyOfChampions
                     target.LosingHealth(highPunchPower * 2);
                     stamina -= 25;
                     damage = calculator.CalculateDamage(highKickPower * 2, stamina,
-                  target.BlockPower, target.DodgeChance);
+                    target.BlockPower, target.DodgeChance);
                     break;
 
                 case Characters.Wanaporn:
@@ -127,7 +110,7 @@ namespace JourneyOfChampions
                     target.LosingHealth(lowKickPower * 3);
 
                     damage = calculator.CalculateDamage(highKickPower * 2, stamina,
-                  target.BlockPower, target.DodgeChance);
+                    target.BlockPower, target.DodgeChance);
 
                     stamina -= 20;
                     break;
@@ -137,7 +120,7 @@ namespace JourneyOfChampions
                     target.LosingHealth(lowPunchPower * 2);
 
                     damage = calculator.CalculateDamage(highKickPower * 2, stamina,
-                  target.BlockPower, target.DodgeChance);
+                    target.BlockPower, target.DodgeChance);
 
                     Health += 10; // lite heal
                     stamina -= 10;
@@ -269,10 +252,8 @@ namespace JourneyOfChampions
             dodgeChance = 1;
             recoveryRate = 1;
         }
-
-        
-
-        public virtual void NextOpponent() { }
+        public virtual string NextOpponent() { return ""; }
+        public virtual string CalculateMove(Character champion, Character computer) { return ""; }
         public void LosingHealth(int damage) 
         {
             Health -= damage;

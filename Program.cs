@@ -9,7 +9,7 @@ namespace JourneyOfChampions
     {
         static async Task Main(string[] args)
         {
-
+            Battle battle = new Battle();
 
 
             Console.Title = "Journey of Champions";
@@ -52,77 +52,28 @@ namespace JourneyOfChampions
 
             Character champion = new Champion(chosenName);
 
+            Console.WriteLine(champion.Name);
+            Console.WriteLine(champion.Origin);
 
-
-
+            champion.Moves.AddingMoves();
 
             Console.WriteLine($"(You have chosen {chosenName} as your character!)");
-            Console.WriteLine("These are your opponents:");
+            string enemyName = champion.NextOpponent(); 
+            Console.WriteLine($"Your first opponent is {enemyName}");
 
-            foreach (string name in champion.Opponents)
-            {
-                Console.WriteLine($"- {name}");
-            }
+            Character enemyChampion = new Computer(enemyName);
 
+            await musicPlayer.Play(@"sounds\TheJazzMan.mp3");
+            battle.ComputerMove(champion, enemyChampion);
 
+            string enemyName2 = champion.NextOpponent();
+            Console.WriteLine($"Your second opponent is {enemyName2}");
 
+            Console.ReadLine();
 
-
-
-
-            //stats.DisplayStatsDiego();
-            //Console.ReadLine();
-
-            //champion.LosingHealth(20);
-
-            //Console.WriteLine($"Diego's health after taking damage: {champion.Health}");
-
-            //champion.Moves.MakingMove("High Kick");
-            //Console.WriteLine(champion.Moves.HighKicksUsed);
-
-
-
-
-
-
-
+            
         }
 
-        //Helt GPT
-        static void StartFight(Character player, Character enemy, string enemyName)
-        {
-            Console.WriteLine($"\nA new fight begins! You vs {enemyName}!");
-
-            while (player.IsAlive && enemy.IsAlive)
-            {
-                Console.WriteLine($"\nYour HP: {player.Health}  |  {enemyName}'s HP: {enemy.Health}");
-                Console.WriteLine("Choose your move:");
-                Console.WriteLine("1) High Kick");
-                Console.WriteLine("2) Low Kick");
-                Console.WriteLine("3) Special Move");
-                Console.Write("Your choice: ");
-
-                string choice = Console.ReadLine();
-
-                switch (choice)
-                {
-                    case "1":
-                        player.HighKick(enemy);
-                        break;
-                    case "2":
-                        player.LowKick(enemy);
-                        break;
-                    case "3":
-                        player.SpecialMove(enemy);
-                        break;
-                    default:
-                        Console.WriteLine("You hesitated and missed your turn...");
-                        break;
-                }
-
-                //helt gpt FORTSÄTT??
-
-            }
-        }
+        
     }
 }
