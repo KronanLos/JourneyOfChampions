@@ -64,10 +64,7 @@ namespace JourneyOfChampions
             Character enemyChampion = new Computer(enemyName);
 
             await musicPlayer.Play(@"sounds\TheJazzMan.mp3");
-            battle.ComputerMove(champion, enemyChampion);
-
-            string enemyName2 = champion.NextOpponent();
-            Console.WriteLine($"Your second opponent is {enemyName2}");
+            battle.StartFight(champion, enemyChampion);
 
             Console.ReadLine();
 

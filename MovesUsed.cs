@@ -15,6 +15,7 @@ namespace JourneyOfChampions
         public int BlocksUsed { get; private set; }
         public int DodgesUsed { get; private set; }
         public int SpecialMovesUsed { get; private set; }
+        public int RecoversUsed { get; private set; }   
 
         public void AddingMoves() 
         {
@@ -52,6 +53,10 @@ namespace JourneyOfChampions
 
                 case "Dodge":
                     DodgesUsed++;
+                    break;
+
+                case "Recover":
+                    RecoversUsed++;
                     break;
 
                 case "Special Move":
