@@ -16,6 +16,11 @@ namespace JourneyOfChampions
         public string LeastUsedMove { get; private set; }
         public string StyleOfPlay { get; private set; }
 
+        // KRAV 2:
+        // 1: Overloading av kunstruktorer
+        // 2: Tanken är att göra en overloading av kunstruktorn när man möter en boss men det har inte implementerats ännu.
+        // 3: Har ingen annan ordentlig plan för att få en bra implementation av detta krav.
+
         public Computer(string name) : base(name)
         {
 
@@ -38,27 +43,6 @@ namespace JourneyOfChampions
 
             string move = BasicMoves();
 
-            /*
-            switch (computer.Name)
-            {
-                case "Diego":
-                    DiegoMoves(champion, moveChoices); 
-                    break;
-                case "Donald":
-                    // DonaldMoves(champion);
-                    break;
-                case "Wanaporn":
-                    // Implement Wanaporn's specific move logic here
-                    break;
-                case "Asa":
-                    break;
-                case "Vladimir":
-                    break;
-                case "Haakon":
-                    break;
-                default:
-                    break;
-            }*/
             return move;
         }
 

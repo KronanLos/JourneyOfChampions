@@ -10,9 +10,23 @@ namespace JourneyOfChampions
 {
     abstract class Character
     {
+        // KRAV 6:
+        // 1: Subtypspolymorfism/Arv
+        // 2: Klasserna Champion och Computer ärver direkt från Character-klassen.
+        // 3: Character-klassen innehåller properties och metoder som är gemensamma för båda subklasserna.
+        // Men hur man spelar skiljer sig om det är en spelare eller dator som gör draget.
+
+        // KRAV 1:
+        // 1: Inkapsling/Informationskapsling
+        // 2: Användning av protected för properties och fields som ska ärvas.
+        // 3: När man skapar sin karaktär i Champion-klassen så kan man använda sig av dessa properties.
         public List<string> Opponents { get; protected set; }
         public MovesUsed Moves { get; protected set; }
         public string Name { get; protected set; }
+        // KRAV 3:
+        // 1: Computed Properties
+        // 2: Health har ett värde som ändras i klassen Battle när man tar skada.
+        // 3: För att räkna ut om man fortfarande är vid liv.
         public int Health { get; set; }
         public bool IsAlive => Health > 0;      
         public int Stamina { get; set; }

@@ -13,6 +13,10 @@ namespace JourneyOfChampions
 
         public Champion(string name) : base(name)
         {
+            // KRAV 5:
+            // 1: Beroendeinjektion
+            // 2: Skapar ett objekt av klassed MovesUsed som är direkt kopplad till karaktären.
+            // 3: För att AI ska kunna använda sig av en uträkning på vilka moves som använts mest och anpassa sin strategi efter det.
             Moves = new MovesUsed();
             Opponents = new List<string>
             {
